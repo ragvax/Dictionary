@@ -1,0 +1,134 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Dictionary" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_theme1</item>
+        <item name="colorPrimaryVariant">@color/primary_theme1</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/primary_theme1_variant</item>
+        <item name="colorSecondaryVariant">@color/primary_theme1_variant</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Theme Colors. -->
+        <item name="primary">@color/primary_theme1</item>
+        <item name="primaryVariant">@color/primary_theme1_variant</item>
+        <item name="secondary">@color/secondary_theme1</item>
+        <item name="background">@color/background_theme1</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <!-- Action bar style. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlNormal">?attr/primary</item>
+        <item name="elevation">0dp</item>
+        <!-- Window background -->
+        <item name="android:windowBackground">?attr/background</item>
+    </style>
+
+    <style name="Theme.Dictionary.Toolbar">
+        <item name="android:background">?attr/background</item>
+        <item name="titleTextColor">?attr/primary</item>
+    </style>
+
+
+    <style name="MyDenseOutlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="materialThemeOverlay">@style/MyThemeOverlayOutlinedDense</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:background">@drawable/text_input_layout_background</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+    </style>
+
+    <style name="MyThemeOverlayOutlinedDense">
+        <item name="editTextStyle">@style/MyTextInputEditText_outlinedBox_dense_h</item>
+    </style>
+
+    <style name="MyTextInputEditText_outlinedBox_dense_h" parent="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+
+    <!-- TYPOGRAPHY -->
+    <!-- Title -->
+    <style name="TextAppearance.Dictionary.Title" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/playfair_display_bold</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">?attr/primary</item>
+        <item name="lineHeight">36sp</item>
+    </style>
+
+    <style name="Theme.Dictionary.Title">
+        <item name="android:textAppearance">@style/TextAppearance.Dictionary.Title</item>
+        <item name="firstBaselineToTopHeight">30sp</item>
+        <item name="lastBaselineToBottomHeight">6sp</item>
+    </style>
+
+    <!-- Subtitle -->
+    <style name="TextAppearance.Dictionary.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/primary</item>
+        <item name="android:letterSpacing">0.007145</item>
+    </style>
+
+    <style name="Theme.Dictionary.Subtitle">
+        <item name="android:textAppearance">@style/TextAppearance.Dictionary.Subtitle</item>
+        <item name="firstBaselineToTopHeight">16sp</item>
+        <item name="lastBaselineToBottomHeight">4sp</item>
+    </style>
+
+    <!-- Subtitle2 -->
+    <style name="TextAppearance.Dictionary.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/secondary</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="Theme.Dictionary.Subtitle2">
+        <item name="android:textAppearance">@style/TextAppearance.Dictionary.Subtitle2</item>
+        <item name="firstBaselineToTopHeight">16sp</item>
+        <item name="lastBaselineToBottomHeight">4sp</item>
+    </style>
+
+    <!-- Body1 -->
+    <style name="TextAppearance.Dictionary.Body1" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/primary</item>
+        <item name="lineHeight">20sp</item>
+    </style>
+
+    <style name="Theme.Dictionary.Body1">
+        <item name="android:textAppearance">@style/TextAppearance.Dictionary.Body1</item>
+        <item name="firstBaselineToTopHeight">16sp</item>
+        <item name="lastBaselineToBottomHeight">4sp</item>
+    </style>
+
+    <!-- Body1 -->
+    <style name="TextAppearance.Dictionary.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/primaryVariant</item>
+        <item name="lineHeight">20sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="Theme.Dictionary.Body2">
+        <item name="android:textAppearance">@style/TextAppearance.Dictionary.Body2</item>
+        <item name="firstBaselineToTopHeight">16sp</item>
+        <item name="lastBaselineToBottomHeight">4sp</item>
+    </style>
+
+    <!-- Caption -->
+    <style name="TextAppearance.Dictionary.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/secondary</item>
+        <item name="lineHeight">16sp</item>
+    </style>
+
+    <style name="Theme.Dictionary.Caption">
+        <item name="android:textAppearance">@style/TextAppearance.Dictionary.Caption</item>
+        <item name="firstBaselineToTopHeight">12sp</item>
+        <item name="lastBaselineToBottomHeight">4sp</item>
+    </style>
+</resources>

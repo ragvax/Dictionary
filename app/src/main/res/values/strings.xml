@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Dictionary</string>
+    <string name="title_definitions">DEFINITIONS</string>
+    <string name="error_title_default">Oops!</string>
+    <string name="error_msg_default">Something went wrong</string>
+    <string name="error_title_no_definitions">No definitions found</string>
+</resources>
