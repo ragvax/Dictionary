@@ -1,7 +1,6 @@
 package com.ragvax.dictionary.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
@@ -10,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ragvax.dictionary.R
 import com.ragvax.dictionary.databinding.FragmentHomeBinding
+import com.ragvax.dictionary.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -34,6 +34,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     is HomeEvent.NavigateToDefinition -> {
                         val action = HomeFragmentDirections.actionHomeFragmentToDefinitionFragment(event.query)
                         findNavController().navigate(action)
+                        hideKeyboard()
                     }
                 }
             }
