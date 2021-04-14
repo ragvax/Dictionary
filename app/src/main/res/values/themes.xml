@@ -14,6 +14,7 @@
         <item name="primaryVariant">@color/primary_theme1_variant</item>
         <item name="secondary">@color/secondary_theme1</item>
         <item name="background">@color/background_theme1</item>
+        <item name="fillTint">@color/fill_theme1</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/background</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
@@ -30,7 +31,6 @@
         <item name="android:background">?attr/background</item>
         <item name="titleTextColor">?attr/primary</item>
     </style>
-
 
     <style name="MyDenseOutlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="materialThemeOverlay">@style/MyThemeOverlayOutlinedDense</item>

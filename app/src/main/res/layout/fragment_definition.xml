@@ -46,7 +46,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/tv_definition_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_definition_title"
+            tools:listitem="@layout/item_meaning"/>
 
         <ProgressBar
             android:id="@+id/progressBar"

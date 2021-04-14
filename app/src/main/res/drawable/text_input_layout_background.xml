@@ -4,7 +4,7 @@
         android:height="40dp">
         <shape>
             <corners android:radius="6dp" />
-            <solid android:color="#DADADA" />
+            <solid android:color="?attr/fillTint" />
         </shape>
     </item>
 </layer-list>

@@ -13,5 +13,13 @@
     <color name="primary_theme1_variant">#8E8E93</color>
     <color name="secondary_theme1">#007AFF</color>
     <color name="background_theme1">#FAFAFA</color>
+    <color name="fill_theme1">#DADADA</color>
+
+    <!-- Theme 0 -->
+    <color name="primary_theme0">#FFFFFF</color>
+    <color name="primary_theme0_variant">#838389</color>
+    <color name="secondary_theme0">#0A84FF</color>
+    <color name="background_theme0">#000000</color>
+    <color name="fill_theme0">#1c1c1f</color>
 
 </resources>

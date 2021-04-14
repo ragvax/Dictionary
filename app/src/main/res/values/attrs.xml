@@ -4,4 +4,5 @@
     <attr name="primaryVariant" format="color" />
     <attr name="secondary" format="color" />
     <attr name="backgroundColor" format="color" />
+    <attr name="fillTint" format="color" />
 </resources>
