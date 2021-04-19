@@ -12,8 +12,8 @@
     <color name="primary_theme1">#37383B</color>
     <color name="primary_theme1_variant">#8E8E93</color>
     <color name="secondary_theme1">#007AFF</color>
-    <color name="background_theme1">#FAFAFA</color>
-    <color name="fill_theme1">#DADADA</color>
+    <color name="background_theme1">#FFFFFF</color>
+    <color name="fill_theme1">#EFEFF4</color>
 
     <!-- Theme 0 -->
     <color name="primary_theme0">#FFFFFF</color>

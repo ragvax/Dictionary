@@ -14,9 +14,10 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_word_title"
             style="@style/Theme.Dictionary.Title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
             app:layout_constraintStart_toStartOf="@+id/start_guideline"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="hello" />
@@ -24,8 +25,9 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_phonetic"
             style="@style/Theme.Dictionary.Caption"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
             app:layout_constraintStart_toStartOf="@+id/start_guideline"
             app:layout_constraintTop_toBottomOf="@+id/tv_word_title"
             tools:text="/həˈloʊ/, /hɛˈloʊ/" />
@@ -47,7 +49,12 @@
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_definition_title"
-            tools:listitem="@layout/item_meaning"/>
+            tools:listitem="@layout/item_meaning" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            app:layout_constraintTop_toBottomOf="@id/rv_meaning" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -66,21 +73,21 @@
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/error_title_default"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/tv_error_message"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            android:text="@string/error_title_default"
             tools:visibility="visible" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_error_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:textAlignment="center"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toStartOf="@id/start_guideline"

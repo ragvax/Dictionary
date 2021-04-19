@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ragvax.dictionary.data.Word
 import com.ragvax.dictionary.repository.DefinitionRepository
+import com.ragvax.dictionary.repository.RecentQueryRepository
 import com.ragvax.dictionary.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,18 +15,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DefinitionViewModel @Inject constructor(
-    private val repository: DefinitionRepository
+    private val definitionRepository: DefinitionRepository,
+    private val recentQueryRepository: RecentQueryRepository,
 ) : ViewModel() {
     private val _definitionFlow = MutableStateFlow<DefinitionEvent>(DefinitionEvent.Empty)
     val definitionFlow: StateFlow<DefinitionEvent> = _definitionFlow
 
     fun getDefinitions(word: String) = viewModelScope.launch(Dispatchers.IO) {
         _definitionFlow.value = DefinitionEvent.Loading
-        when(val result = repository.fetchDefinitions(word)) {
+        when(val result = definitionRepository.fetchDefinitions(word)) {
             is Resource.Success -> {
                 val data = result.data
                 if (data != null) {
                     _definitionFlow.value = DefinitionEvent.Success(data[0])
+                    insertRecentQuery(word)
                 } else {
                     _definitionFlow.value = DefinitionEvent.Failure("Error", "Result: Error")
                 }
@@ -33,6 +36,10 @@ class DefinitionViewModel @Inject constructor(
             is Resource.Error -> _definitionFlow.value = DefinitionEvent.Failure(null,result.msg ?: "Resource: Error")
             is Resource.ErrorGeneric -> _definitionFlow.value = DefinitionEvent.Failure(result.title, result.msg)
         }
+    }
+
+    fun insertRecentQuery(word: String) = viewModelScope.launch(Dispatchers.IO) {
+        recentQueryRepository.insertRecentQuery(word)
     }
 }
 

@@ -12,6 +12,7 @@ import com.ragvax.dictionary.utils.hide
 class DefinitionAdapter(
     private val definitions: List<Definition>,
 ) : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
+
     inner class ViewHolder(private val binding: ItemDefinitionBinding) :
         RecyclerView.ViewHolder(binding.root) {
 

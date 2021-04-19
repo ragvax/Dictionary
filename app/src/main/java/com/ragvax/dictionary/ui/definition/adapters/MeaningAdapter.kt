@@ -16,6 +16,7 @@ class MeaningAdapter(
     private val meanings: List<Meaning>,
     private val context: Context,
 ) : ListAdapter<Meaning, MeaningAdapter.ViewHolder>(MeaningDiffCallback()) {
+
     inner class ViewHolder(private val binding: ItemMeaningBinding) :
         RecyclerView.ViewHolder(binding.root) {
 

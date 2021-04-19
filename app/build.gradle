@@ -68,6 +68,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'
 
+    // Room Persistence Library
+    implementation 'androidx.room:room-runtime:2.2.6'
+    implementation "androidx.room:room-ktx:2.2.6"
+    kapt 'androidx.room:room-compiler:2.2.6'
+
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
@@ -75,7 +80,9 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:1.0.0-beta01"
 
     // Test Dependencies
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "com.google.truth:truth:1.0.1"
+    androidTestImplementation "com.google.truth:truth:1.0.1"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

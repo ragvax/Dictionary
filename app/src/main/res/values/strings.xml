@@ -4,4 +4,6 @@
     <string name="error_title_default">Oops!</string>
     <string name="error_msg_default">Something went wrong</string>
     <string name="error_title_no_definitions">No definitions found</string>
+    <string name="title_recent_searches">Recent Searches</string>
+    <string name="search_hint">Search for a word</string>
 </resources>

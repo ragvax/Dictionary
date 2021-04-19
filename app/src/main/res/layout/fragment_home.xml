@@ -9,10 +9,11 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/AppName"
         style="@style/Theme.Dictionary.Title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Dictionary"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/app_name"
+        app:layout_constraintEnd_toStartOf="@+id/end_guideline"
         app:layout_constraintStart_toStartOf="@id/start_guideline"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -40,10 +41,32 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:imeOptions="actionSearch"
-            android:hint="Search definitions"
+            android:hint="@string/search_hint"
             android:textColorHint="#5E5E5D" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recent_title"
+        style="@style/Theme.Dictionary.Title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_recent_searches"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recent_searches"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/recent_title"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        tools:listitem="@layout/item_recent_searches"
+        tools:itemCount="5"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/start_guideline"
@@ -64,6 +87,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="116dp" />
+        app:layout_constraintGuide_begin="188dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

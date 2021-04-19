@@ -21,7 +21,7 @@
         <!-- Action bar style. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorControlNormal">?attr/primary</item>
+        <item name="colorControlNormal">?attr/secondary</item>
         <item name="elevation">0dp</item>
         <!-- Window background -->
         <item name="android:windowBackground">?attr/background</item>
@@ -65,6 +65,17 @@
         <item name="lastBaselineToBottomHeight">6sp</item>
     </style>
 
+    <!-- Title2 -->
+    <style name="TextAppearance.Dictionary.Title2" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/playfair_display_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">?attr/primary</item>
+    </style>
+
+    <style name="Theme.Dictionary.Title2">
+        <item name="android:textAppearance">@style/TextAppearance.Dictionary.Title2</item>
+    </style>
+
     <!-- Subtitle -->
     <style name="TextAppearance.Dictionary.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textSize">14sp</item>
@@ -105,7 +116,7 @@
         <item name="lastBaselineToBottomHeight">4sp</item>
     </style>
 
-    <!-- Body1 -->
+    <!-- Body2 -->
     <style name="TextAppearance.Dictionary.Body2" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">?attr/primaryVariant</item>
