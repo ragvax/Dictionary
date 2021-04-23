@@ -86,4 +86,9 @@ class DefinitionFragment : Fragment(R.layout.fragment_definition) {
             progressBar.show()
         }
     }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 }

@@ -18,6 +18,7 @@ class DefinitionViewModel @Inject constructor(
     private val definitionRepository: DefinitionRepository,
     private val recentQueryRepository: RecentQueryRepository,
 ) : ViewModel() {
+
     private val _definitionFlow = MutableStateFlow<DefinitionEvent>(DefinitionEvent.Empty)
     val definitionFlow: StateFlow<DefinitionEvent> = _definitionFlow
 
@@ -38,7 +39,7 @@ class DefinitionViewModel @Inject constructor(
         }
     }
 
-    fun insertRecentQuery(word: String) = viewModelScope.launch(Dispatchers.IO) {
+    private fun insertRecentQuery(word: String) = viewModelScope.launch(Dispatchers.IO) {
         recentQueryRepository.insertRecentQuery(word)
     }
 }

@@ -18,7 +18,10 @@ class DefinitionRepository @Inject constructor(
             if (response.isSuccessful && result != null) {
                 Resource.Success(result)
             } else {
-                Resource.ErrorGeneric("No definitions found", "Sorry, we couldn't find definitions for the word you were looking for.")
+                Resource.ErrorGeneric(
+                    "No definitions found",
+                    "Sorry, we couldn't find definitions for the word you were looking for."
+                )
             }
         } catch (e: Exception) {
             Resource.Error("An Error occurred while trying to fetch data from the server.")

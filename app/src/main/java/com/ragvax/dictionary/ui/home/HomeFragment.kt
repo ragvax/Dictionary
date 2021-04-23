@@ -35,27 +35,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnR
         observeViewModel()
     }
 
-    private fun observeViewModel() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.homeEvent.collectLatest { event ->
-                when (event) {
-                    is HomeEvent.NavigateToDefinition -> {
-                        val action = HomeFragmentDirections.actionHomeFragmentToDefinitionFragment(event.query)
-                        findNavController().navigate(action)
-                        hideKeyboard()
-                    }
-                }
-            }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.recentQueries.collect { recentQueries ->
-                Log.e("DEBUG", recentQueries.toString())
-                recentSearchesAdapter.submitList(recentQueries)
-            }
-        }
-    }
-
     private fun initView() {
         binding.apply {
             tvSearch.setOnEditorActionListener { textView, i, _ ->
@@ -74,11 +53,36 @@ class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnR
         }
     }
 
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.homeEvent.collectLatest { event ->
+                when (event) {
+                    is HomeEvent.NavigateToDefinition -> {
+                        val action = HomeFragmentDirections.actionHomeFragmentToDefinitionFragment(event.query)
+                        findNavController().navigate(action)
+                        hideKeyboard()
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.recentQueries.collect { recentQueries ->
+                recentSearchesAdapter.submitList(recentQueries)
+            }
+        }
+    }
+
     override fun onRecentSearchItemClick(query: String) {
         viewModel.onButtonClick(query)
     }
 
     private fun onSearchAction(query: String) {
         viewModel.onButtonClick(query)
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }
