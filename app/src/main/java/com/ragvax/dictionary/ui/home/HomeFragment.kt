@@ -1,7 +1,6 @@
 package com.ragvax.dictionary.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
@@ -19,7 +18,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnRecentSearchItemClickListener {
+class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnRecentSearchesItemClickListener {
     private val viewModel: HomeViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -73,7 +72,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnR
         }
     }
 
-    override fun onRecentSearchItemClick(query: String) {
+    override fun onRecentSearchesItemClick(query: String) {
         viewModel.onButtonClick(query)
     }
 

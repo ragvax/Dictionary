@@ -10,7 +10,7 @@ import com.ragvax.dictionary.databinding.ItemRecentSearchesBinding
 import java.util.*
 
 class RecentSearchesAdapter(
-    private val listener: OnRecentSearchItemClickListener,
+    private val listener: OnRecentSearchesItemClickListener,
 ) : ListAdapter<RecentQuery, RecentSearchesAdapter.ViewHolder>(RecentSearchesDiffCallback()) {
 
     inner class ViewHolder(
@@ -22,7 +22,7 @@ class RecentSearchesAdapter(
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val searchQuery = getItem(position)
-                    listener.onRecentSearchItemClick(searchQuery.queryText)
+                    listener.onRecentSearchesItemClick(searchQuery.queryText)
                 }
             }
         }
@@ -53,7 +53,7 @@ class RecentSearchesAdapter(
             oldItem == newItem
     }
 
-    interface OnRecentSearchItemClickListener {
-        fun onRecentSearchItemClick(query: String)
+    interface OnRecentSearchesItemClickListener {
+        fun onRecentSearchesItemClick(query: String)
     }
 }

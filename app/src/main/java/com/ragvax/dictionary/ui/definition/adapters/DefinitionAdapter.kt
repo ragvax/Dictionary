@@ -1,9 +1,7 @@
 package com.ragvax.dictionary.ui.definition.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ragvax.dictionary.data.Definition
 import com.ragvax.dictionary.databinding.ItemDefinitionBinding
