@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayShowTitleEnabled(true)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        observeNavElements(binding, navController)
+        observeNavElements(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun observeNavElements(binding: ActivityMainBinding, navController: NavController) {
+    private fun observeNavElements(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.definitionFragment -> {

@@ -17,7 +17,7 @@
         <item name="fillTint">@color/fill_theme0</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/background</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
         <!-- Action bar style. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
