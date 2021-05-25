@@ -14,13 +14,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ragvax.dictionary.R
 import com.ragvax.dictionary.databinding.FragmentHomeBinding
 import com.ragvax.dictionary.ui.home.adapters.RecentSearchesAdapter
+import com.ragvax.dictionary.utils.collectWhileStarted
 import com.ragvax.dictionary.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnRecentSearchesItemClickListener {
+class HomeFragment : Fragment(R.layout.fragment_home),
+    RecentSearchesAdapter.OnRecentSearchesItemClickListener {
     private val viewModel: HomeViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -48,9 +50,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnR
             }
 
             rvRecentSearches.adapter = recentSearchesAdapter
-            rvRecentSearches.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            rvRecentSearches.layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
-            ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
                 0,
                 ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
             ) {
@@ -71,17 +74,15 @@ class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnR
     }
 
     private fun observeViewModel() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.homeEvent.collectLatest { event ->
-                when (event) {
-                    is HomeEvent.NavigateToDefinition -> {
-                        val action = HomeFragmentDirections.actionHomeFragmentToDefinitionFragment(event.query)
-                        findNavController().navigate(action)
-                        hideKeyboard()
-                    }
-                    is HomeEvent.ShowDeleteNotificationToast -> {
-                        Toast.makeText(context, "Recent query deleted", Toast.LENGTH_SHORT).show()
-                    }
+        viewModel.homeEvent.collectWhileStarted(viewLifecycleOwner) { event ->
+            when (event) {
+                is HomeEvent.NavigateToDefinition -> {
+                    val action = HomeFragmentDirections.actionHomeFragmentToDefinitionFragment(event.query)
+                    findNavController().navigate(action)
+                    hideKeyboard()
+                }
+                is HomeEvent.ShowDeleteNotificationToast -> {
+                    Toast.makeText(context, "Recent query deleted", Toast.LENGTH_SHORT).show()
                 }
             }
         }

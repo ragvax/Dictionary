@@ -24,7 +24,7 @@ class DefinitionRepository @Inject constructor(
                 )
             }
         } catch (e: Exception) {
-            Resource.Error("An Error occurred while trying to fetch data from the server.")
+            Resource.Error("An Error occurred while trying to fetch data from the server. Please check you internet connection. ")
         } catch (e: IOException) {
             Resource.Error(e.message ?: "Network Error")
         }
