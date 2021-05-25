@@ -11,4 +11,8 @@ class RecentQueryRepository @Inject constructor(private val recentQueryDao: Rece
     suspend fun insertRecentQuery(word: String) {
         recentQueryDao.insertQuery(RecentQuery(word))
     }
+
+    suspend fun deleteRecentQuery(query: RecentQuery) {
+        recentQueryDao.deleteQuery(query)
+    }
 }

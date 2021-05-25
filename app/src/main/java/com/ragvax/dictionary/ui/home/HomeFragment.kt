@@ -3,10 +3,12 @@ package com.ragvax.dictionary.ui.home
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ragvax.dictionary.R
@@ -44,11 +46,27 @@ class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnR
                     false
                 }
             }
-        }
 
-        binding.apply {
             rvRecentSearches.adapter = recentSearchesAdapter
             rvRecentSearches.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+
+            ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            ) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    return false
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val query = recentSearchesAdapter.currentList[viewHolder.adapterPosition]
+                    viewModel.onQuerySwiped(query)
+                }
+            }).attachToRecyclerView(rvRecentSearches)
         }
     }
 
@@ -60,6 +78,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), RecentSearchesAdapter.OnR
                         val action = HomeFragmentDirections.actionHomeFragmentToDefinitionFragment(event.query)
                         findNavController().navigate(action)
                         hideKeyboard()
+                    }
+                    is HomeEvent.ShowDeleteNotificationToast -> {
+                        Toast.makeText(context, "Recent query deleted", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

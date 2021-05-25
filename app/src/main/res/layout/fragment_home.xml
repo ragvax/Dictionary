@@ -60,13 +60,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recent_searches"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@id/recent_title"
-        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/end_guideline"
-        tools:listitem="@layout/item_recent_searches"
-        tools:itemCount="5"/>
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/recent_title"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_recent_searches" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/start_guideline"
