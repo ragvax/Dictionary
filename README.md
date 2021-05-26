@@ -3,7 +3,8 @@
 A simple dictionary app that uses the API created by [Meet Developer](https://github.com/meetDeveloper). This dictionary app uses that API to show definitions for the words entered by the user. This app currently only supports English language.
 
 ## Screenshot
-<img src="https://github.com/ragvax/Pictrr/blob/master/assets/home_day.png" width="225"> <img src="https://github.com/ragvax/Pictrr/blob/master/assets/home_night.png" width="225"> <img src="https://github.com/ragvax/Pictrr/blob/master/assets/definition_day.png" width="225"> <img src="https://github.com/ragvax/Pictrr/blob/master/assets/definition_night.png" width="225">
+<img src="https://github.com/ragvax/Dictionary/blob/master/assets/home_day.png" width="225"> <img src="https://github.com/ragvax/Dictionary/blob/master/assets/definition_day.png" width="225">
+<img src="https://github.com/ragvax/Dictionary/blob/master/assets/home_night.png" width="225"> <img src="https://github.com/ragvax/Dictionary/blob/master/assets/definition_night.png" width="225">
 
 ## Libraries Used
 * [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
