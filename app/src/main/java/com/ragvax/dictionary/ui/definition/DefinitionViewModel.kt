@@ -1,5 +1,6 @@
 package com.ragvax.dictionary.ui.definition
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ragvax.dictionary.data.Word
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class DefinitionViewModel @Inject constructor(
     private val definitionRepository: DefinitionRepository,
     private val recentQueryRepository: RecentQueryRepository,
+    private val state: SavedStateHandle,
 ) : ViewModel() {
 
     private val _definitionFlow = MutableStateFlow<DefinitionEvent>(DefinitionEvent.Empty)
@@ -24,11 +26,12 @@ class DefinitionViewModel @Inject constructor(
 
     fun getDefinitions(word: String) = viewModelScope.launch(Dispatchers.IO) {
         _definitionFlow.value = DefinitionEvent.Loading
-        when(val result = definitionRepository.fetchDefinitions(word)) {
+        when(val result = getResult(word)) {
             is Resource.Success -> {
                 val data = result.data
                 if (data != null) {
                     _definitionFlow.value = DefinitionEvent.Success(data[0])
+                    state.set<Word>("state", data[0])
                     insertRecentQuery(word)
                 } else {
                     _definitionFlow.value = DefinitionEvent.Failure("Error", "Result: Error")
@@ -37,6 +40,12 @@ class DefinitionViewModel @Inject constructor(
             is Resource.Error -> _definitionFlow.value = DefinitionEvent.Failure(null,result.msg ?: "Resource: Error")
             is Resource.ErrorGeneric -> _definitionFlow.value = DefinitionEvent.Failure(result.title, result.msg)
         }
+    }
+
+    private suspend fun getResult(word: String): Resource<List<Word>> = if (state.get<Word>("state") != null) {
+        Resource.Success(listOf(state.get<Word>("state")!!))
+    } else {
+        definitionRepository.fetchDefinitions(word)
     }
 
     private fun insertRecentQuery(word: String) = viewModelScope.launch(Dispatchers.IO) {
