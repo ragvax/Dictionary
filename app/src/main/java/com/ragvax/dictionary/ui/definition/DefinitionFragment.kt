@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ragvax.dictionary.R
-import com.ragvax.dictionary.data.Meaning
-import com.ragvax.dictionary.data.Word
+import com.ragvax.dictionary.data.source.remote.Meaning
+import com.ragvax.dictionary.data.source.remote.Word
 import com.ragvax.dictionary.databinding.FragmentDefinitionBinding
 import com.ragvax.dictionary.ui.definition.adapters.MeaningAdapter
 import com.ragvax.dictionary.utils.*

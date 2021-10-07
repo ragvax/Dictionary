@@ -1,4 +1,4 @@
-package com.ragvax.dictionary.data
+package com.ragvax.dictionary.data.source.remote
 
 import retrofit2.Response
 import retrofit2.http.GET

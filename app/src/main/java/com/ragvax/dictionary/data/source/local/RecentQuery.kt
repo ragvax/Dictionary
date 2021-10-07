@@ -1,9 +1,8 @@
-package com.ragvax.dictionary.data.local
+package com.ragvax.dictionary.data.source.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ragvax.dictionary.data.Word
 
 @Entity(tableName = "recent_query")
 data class RecentQuery(

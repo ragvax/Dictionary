@@ -1,4 +1,4 @@
-package com.ragvax.dictionary.data
+package com.ragvax.dictionary.data.source.remote
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

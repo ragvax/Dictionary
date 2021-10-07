@@ -1,4 +1,4 @@
-package com.ragvax.dictionary.data.local
+package com.ragvax.dictionary.data.source.local
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow

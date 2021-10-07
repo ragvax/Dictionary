@@ -1,4 +1,4 @@
-package com.ragvax.dictionary.data.local
+package com.ragvax.dictionary.data.source.local
 
 import android.content.Context
 import androidx.room.Database

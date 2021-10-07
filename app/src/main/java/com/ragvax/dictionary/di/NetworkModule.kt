@@ -1,6 +1,6 @@
 package com.ragvax.dictionary.di
 
-import com.ragvax.dictionary.data.DefinitionService
+import com.ragvax.dictionary.data.source.remote.DefinitionService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

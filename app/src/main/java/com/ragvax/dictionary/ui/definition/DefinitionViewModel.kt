@@ -3,9 +3,9 @@ package com.ragvax.dictionary.ui.definition
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ragvax.dictionary.data.Word
-import com.ragvax.dictionary.repository.DefinitionRepository
-import com.ragvax.dictionary.repository.RecentQueryRepository
+import com.ragvax.dictionary.data.source.remote.Word
+import com.ragvax.dictionary.domain.usecase.GetWordDefinitions
+import com.ragvax.dictionary.domain.usecase.InsertRecentQuery
 import com.ragvax.dictionary.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,8 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DefinitionViewModel @Inject constructor(
-    private val definitionRepository: DefinitionRepository,
-    private val recentQueryRepository: RecentQueryRepository,
+    private val getWordDefinitions: GetWordDefinitions,
+    private val insertRecentQuery: InsertRecentQuery,
     private val state: SavedStateHandle,
 ) : ViewModel() {
 
@@ -32,7 +32,7 @@ class DefinitionViewModel @Inject constructor(
                 if (data != null) {
                     _definitionFlow.value = DefinitionEvent.Success(data[0])
                     state.set<Word>("state", data[0])
-                    insertRecentQuery(word)
+                    insertRecent(word)
                 } else {
                     _definitionFlow.value = DefinitionEvent.Failure("Error", "Result: Error")
                 }
@@ -45,11 +45,11 @@ class DefinitionViewModel @Inject constructor(
     private suspend fun getResult(word: String): Resource<List<Word>> = if (state.get<Word>("state") != null) {
         Resource.Success(listOf(state.get<Word>("state")!!))
     } else {
-        definitionRepository.fetchDefinitions(word)
+        getWordDefinitions(word)
     }
 
-    private fun insertRecentQuery(word: String) = viewModelScope.launch(Dispatchers.IO) {
-        recentQueryRepository.insertRecentQuery(word)
+    private fun insertRecent(word: String) = viewModelScope.launch(Dispatchers.IO) {
+        insertRecentQuery(word)
     }
 }
 

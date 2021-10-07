@@ -1,14 +1,13 @@
 package com.ragvax.dictionary.ui.definition.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ragvax.dictionary.data.Meaning
+import com.ragvax.dictionary.data.source.remote.Meaning
 import com.ragvax.dictionary.databinding.ItemMeaningBinding
 import com.ragvax.dictionary.utils.hide
 
