@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IDefinitionRepository {
 
-    suspend fun getWordDefinitions(word: String): Resource<List<Word>>
+    suspend fun getWordDefinitions(word: String): Resource<Word>
 
     fun getRecentWordQueries(): Flow<List<RecentQuery>>
 

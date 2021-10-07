@@ -31,8 +31,3 @@ class HomeViewModel @Inject constructor(
 
     val recentQueries = getRecentQueries()
 }
-
-sealed class HomeEvent {
-    data class NavigateToDefinition(val query: String) : HomeEvent()
-    object ShowDeleteNotificationToast : HomeEvent()
-}

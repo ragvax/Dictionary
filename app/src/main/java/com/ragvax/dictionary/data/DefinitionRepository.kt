@@ -17,22 +17,26 @@ class DefinitionRepository @Inject constructor(
     private val localDataSource: LocalDataSource,
 ): IDefinitionRepository {
 
-    override suspend fun getWordDefinitions(word: String): Resource<List<Word>> {
+    override suspend fun getWordDefinitions(word: String): Resource<Word> {
         return try {
             val response = remoteDataSource.fetchWordDefinition(word)
-            val result = response.body()
-            if (response.isSuccessful && result != null) {
-                Resource.Success(result)
+            if (response.isSuccessful) {
+                val result = response.body()?.get(0)
+                if (result != null) {
+                    Resource.Success(result)
+                } else {
+                    Resource.Error("Whoops","Server returned an empty result")
+                }
             } else {
-                Resource.ErrorGeneric(
+                Resource.Error(
                     "No definitions found",
                     "Sorry, we couldn't find definitions for the word you were looking for."
                 )
             }
         } catch (e: Exception) {
-            Resource.Error("An Error occurred while trying to fetch data from the server. Please check you internet connection. ")
+            Resource.Error("Network Error", "An error occurred while trying to fetch data from the server. Please check you internet connection.")
         } catch (e: IOException) {
-            Resource.Error(e.message ?: "Network Error")
+            Resource.Error("Network Error", e.message ?: "Network Error")
         }
     }
 

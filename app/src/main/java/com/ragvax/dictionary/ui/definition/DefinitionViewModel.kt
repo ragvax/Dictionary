@@ -21,29 +21,26 @@ class DefinitionViewModel @Inject constructor(
     private val state: SavedStateHandle,
 ) : ViewModel() {
 
-    private val _definitionFlow = MutableStateFlow<DefinitionEvent>(DefinitionEvent.Empty)
-    val definitionFlow: StateFlow<DefinitionEvent> = _definitionFlow
+    private val _definitionFlow = MutableStateFlow<DefinitionState>(DefinitionState.Empty)
+    val definitionFlow: StateFlow<DefinitionState> = _definitionFlow
 
     fun getDefinitions(word: String) = viewModelScope.launch(Dispatchers.IO) {
-        _definitionFlow.value = DefinitionEvent.Loading
+        _definitionFlow.value = DefinitionState.Loading
         when(val result = getResult(word)) {
             is Resource.Success -> {
                 val data = result.data
                 if (data != null) {
-                    _definitionFlow.value = DefinitionEvent.Success(data[0])
-                    state.set<Word>("state", data[0])
+                    _definitionFlow.value = DefinitionState.Success(data)
+                    state.set<Word>("state", data)
                     insertRecent(word)
-                } else {
-                    _definitionFlow.value = DefinitionEvent.Failure("Error", "Result: Error")
                 }
             }
-            is Resource.Error -> _definitionFlow.value = DefinitionEvent.Failure(null,result.msg ?: "Resource: Error")
-            is Resource.ErrorGeneric -> _definitionFlow.value = DefinitionEvent.Failure(result.title, result.msg)
+            is Resource.Error -> _definitionFlow.value = DefinitionState.Failure(null,result.msg ?: "Resource: Error")
         }
     }
 
-    private suspend fun getResult(word: String): Resource<List<Word>> = if (state.get<Word>("state") != null) {
-        Resource.Success(listOf(state.get<Word>("state")!!))
+    private suspend fun getResult(word: String): Resource<Word> = if (state.get<Word>("state") != null) {
+        Resource.Success(state.get<Word>("state")!!)
     } else {
         getWordDefinitions(word)
     }
@@ -51,11 +48,4 @@ class DefinitionViewModel @Inject constructor(
     private fun insertRecent(word: String) = viewModelScope.launch(Dispatchers.IO) {
         insertRecentQuery(word)
     }
-}
-
-sealed class DefinitionEvent {
-    data class Success(val definition: Word) : DefinitionEvent()
-    data class Failure(val errorTitle: String?, val errorMsg: String?) : DefinitionEvent()
-    object Loading : DefinitionEvent()
-    object Empty : DefinitionEvent()
 }
