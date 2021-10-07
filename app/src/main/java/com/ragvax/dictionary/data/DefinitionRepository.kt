@@ -1,8 +1,8 @@
 package com.ragvax.dictionary.data
 
+import com.ragvax.dictionary.data.source.local.LocalDataSource
 import com.ragvax.dictionary.data.source.local.RecentQuery
-import com.ragvax.dictionary.data.source.local.RecentQueryDao
-import com.ragvax.dictionary.data.source.remote.DefinitionService
+import com.ragvax.dictionary.data.source.remote.RemoteDataSource
 import com.ragvax.dictionary.data.source.remote.Word
 import com.ragvax.dictionary.domain.repository.IDefinitionRepository
 import com.ragvax.dictionary.utils.Resource
@@ -13,8 +13,8 @@ import javax.inject.Singleton
 
 @Singleton
 class DefinitionRepository @Inject constructor(
-    private val remoteDataSource: DefinitionService,
-    private val localDataSource: RecentQueryDao,
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
 ): IDefinitionRepository {
 
     override suspend fun getWordDefinitions(word: String): Resource<List<Word>> {
