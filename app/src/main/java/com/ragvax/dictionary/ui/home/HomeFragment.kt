@@ -50,8 +50,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),
             }
 
             rvRecentSearches.adapter = recentSearchesAdapter
-            rvRecentSearches.layoutManager =
-                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            rvRecentSearches.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
             ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
                 0,

@@ -3,7 +3,7 @@ package com.ragvax.dictionary.ui.definition
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ragvax.dictionary.data.source.remote.Word
+import com.ragvax.dictionary.domain.model.WordDefinition
 import com.ragvax.dictionary.domain.usecase.GetWordDefinitions
 import com.ragvax.dictionary.domain.usecase.InsertRecentQuery
 import com.ragvax.dictionary.utils.Resource
@@ -28,19 +28,16 @@ class DefinitionViewModel @Inject constructor(
         _definitionFlow.value = DefinitionState.Loading
         when(val result = getResult(word)) {
             is Resource.Success -> {
-                val data = result.data
-                if (data != null) {
-                    _definitionFlow.value = DefinitionState.Success(data)
-                    state.set<Word>("state", data)
-                    insertRecent(word)
-                }
+                _definitionFlow.value = DefinitionState.Success(result.data)
+                state.set<WordDefinition>("state", result.data)
+                insertRecent(word)
             }
-            is Resource.Error -> _definitionFlow.value = DefinitionState.Failure(null,result.msg ?: "Resource: Error")
+            is Resource.Error -> _definitionFlow.value = DefinitionState.Failure(result.title,result.message)
         }
     }
 
-    private suspend fun getResult(word: String): Resource<Word> = if (state.get<Word>("state") != null) {
-        Resource.Success(state.get<Word>("state")!!)
+    private suspend fun getResult(word: String): Resource<WordDefinition> = if (state.get<WordDefinition>("state") != null) {
+        Resource.Success(state.get<WordDefinition>("state")!!)
     } else {
         getWordDefinitions(word)
     }

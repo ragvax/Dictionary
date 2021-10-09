@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Word(
+data class WordDefinitionEntity(
     val word: String,
     val phonetics: List<Phonetic>?,
     val meanings: List<Meaning>?

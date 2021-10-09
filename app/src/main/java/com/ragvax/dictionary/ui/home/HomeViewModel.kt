@@ -2,7 +2,7 @@ package com.ragvax.dictionary.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ragvax.dictionary.data.source.local.RecentQuery
+import com.ragvax.dictionary.domain.model.RecentQuery
 import com.ragvax.dictionary.domain.usecase.DeleteRecentQuery
 import com.ragvax.dictionary.domain.usecase.GetRecentQueries
 import dagger.hilt.android.lifecycle.HiltViewModel

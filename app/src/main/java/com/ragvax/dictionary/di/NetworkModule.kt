@@ -1,6 +1,7 @@
 package com.ragvax.dictionary.di
 
 import com.ragvax.dictionary.data.source.remote.DefinitionService
+import com.ragvax.dictionary.data.source.remote.DefinitionMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -49,4 +50,8 @@ object NetworkModule {
     @Singleton
     fun provideDefinitionService(retrofit: Retrofit): DefinitionService =
         retrofit.create(DefinitionService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideNetworkMapper(): DefinitionMapper = DefinitionMapper()
 }

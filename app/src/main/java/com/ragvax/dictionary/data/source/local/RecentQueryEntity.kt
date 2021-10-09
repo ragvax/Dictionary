@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "recent_query")
-data class RecentQuery(
+data class RecentQueryEntity(
 
     @PrimaryKey
     @ColumnInfo(name = "query_text")

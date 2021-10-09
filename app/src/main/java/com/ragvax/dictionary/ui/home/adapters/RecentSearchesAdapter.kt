@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ragvax.dictionary.data.source.local.RecentQuery
 import com.ragvax.dictionary.databinding.ItemRecentSearchesBinding
+import com.ragvax.dictionary.domain.model.RecentQuery
 import java.util.*
 
 class RecentSearchesAdapter(

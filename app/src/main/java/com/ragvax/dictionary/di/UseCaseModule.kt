@@ -1,6 +1,7 @@
 package com.ragvax.dictionary.di
 
 import com.ragvax.dictionary.domain.repository.IDefinitionRepository
+import com.ragvax.dictionary.domain.repository.IRecentQueryRepository
 import com.ragvax.dictionary.domain.usecase.DeleteRecentQuery
 import com.ragvax.dictionary.domain.usecase.GetRecentQueries
 import com.ragvax.dictionary.domain.usecase.GetWordDefinitions
@@ -23,19 +24,19 @@ object UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideGetRecentQuery(repository: IDefinitionRepository): GetRecentQueries {
+    fun provideGetRecentQuery(repository: IRecentQueryRepository): GetRecentQueries {
         return GetRecentQueries(repository)
     }
 
     @Provides
     @Singleton
-    fun provideInsertRecentQuery(repository: IDefinitionRepository): InsertRecentQuery {
+    fun provideInsertRecentQuery(repository: IRecentQueryRepository): InsertRecentQuery {
         return InsertRecentQuery(repository)
     }
 
     @Provides
     @Singleton
-    fun provideDeleteRecentQuery(repository: IDefinitionRepository): DeleteRecentQuery {
+    fun provideDeleteRecentQuery(repository: IRecentQueryRepository): DeleteRecentQuery {
         return DeleteRecentQuery(repository)
     }
 }

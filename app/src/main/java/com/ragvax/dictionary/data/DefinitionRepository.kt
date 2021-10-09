@@ -1,12 +1,11 @@
 package com.ragvax.dictionary.data
 
-import com.ragvax.dictionary.data.source.local.LocalDataSource
-import com.ragvax.dictionary.data.source.local.RecentQuery
+import com.ragvax.dictionary.data.source.remote.DefinitionMapper
 import com.ragvax.dictionary.data.source.remote.RemoteDataSource
-import com.ragvax.dictionary.data.source.remote.Word
+import com.ragvax.dictionary.data.source.remote.WordDefinitionEntity
+import com.ragvax.dictionary.domain.model.WordDefinition
 import com.ragvax.dictionary.domain.repository.IDefinitionRepository
 import com.ragvax.dictionary.utils.Resource
-import kotlinx.coroutines.flow.Flow
 import okio.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,41 +13,47 @@ import javax.inject.Singleton
 @Singleton
 class DefinitionRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource,
+    private val definitionMapper: DefinitionMapper,
 ): IDefinitionRepository {
 
-    override suspend fun getWordDefinitions(word: String): Resource<Word> {
+    override suspend fun getWordDefinitions(word: String): Resource<WordDefinition> {
         return try {
             val response = remoteDataSource.fetchWordDefinition(word)
             if (response.isSuccessful) {
                 val result = response.body()?.get(0)
                 if (result != null) {
-                    Resource.Success(result)
+                    Resource.Success(mapResult(result))
                 } else {
-                    Resource.Error("Whoops","Server returned an empty result")
+                    Resource.Error(GENERIC_ERROR, EMPTY_RESULT_MESSAGE)
                 }
             } else {
-                Resource.Error(
-                    "No definitions found",
-                    "Sorry, we couldn't find definitions for the word you were looking for."
-                )
+                Resource.Error(DEFINITIONS_NOT_FOUND, DEFINITIONS_NOT_FOUND_MESSAGE)
             }
-        } catch (e: Exception) {
-            Resource.Error("Network Error", "An error occurred while trying to fetch data from the server. Please check you internet connection.")
-        } catch (e: IOException) {
-            Resource.Error("Network Error", e.message ?: "Network Error")
+        } catch (throwable: Throwable) {
+            when (throwable) {
+                is Exception -> {
+                    Resource.Error(NETWORK_ERROR, EXCEPTION_ERROR_MESSAGE)
+                }
+                is IOException -> {
+                    Resource.Error(NETWORK_ERROR, throwable.message ?: NETWORK_ERROR)
+                }
+                else -> Resource.Error(ERROR, UNKNOWN_ERROR_MESSAGE)
+            }
         }
     }
 
-    override fun getRecentWordQueries(): Flow<List<RecentQuery>> {
-        return localDataSource.getQueriesWithLimit(10)
+    private fun mapResult(result: WordDefinitionEntity): WordDefinition {
+        return definitionMapper.mapFromEntity(result)
     }
 
-    override suspend fun insertRecentWordQuery(word: String) {
-        localDataSource.insertQuery(RecentQuery(word))
-    }
-
-    override suspend fun deleteRecentWordQuery(query: RecentQuery) {
-        localDataSource.deleteQuery(query)
+    companion object {
+        const val ERROR = "Error"
+        const val GENERIC_ERROR = "Whoops"
+        const val NETWORK_ERROR = "Network Error"
+        const val DEFINITIONS_NOT_FOUND = "No definitions found"
+        const val EMPTY_RESULT_MESSAGE = "Server returned an empty result"
+        const val DEFINITIONS_NOT_FOUND_MESSAGE = "Sorry, we couldn't find definitions for the word you were looking for."
+        const val EXCEPTION_ERROR_MESSAGE = "An error occurred while trying to fetch data from the server. Please check you internet connection."
+        const val UNKNOWN_ERROR_MESSAGE = "Unknown error occurred"
     }
 }

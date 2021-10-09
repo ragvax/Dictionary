@@ -5,18 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ragvax.dictionary.data.source.remote.Definition
 import com.ragvax.dictionary.databinding.ItemDefinitionBinding
+import com.ragvax.dictionary.domain.model.WordDefinition
 import com.ragvax.dictionary.utils.hide
 
 class DefinitionAdapter(
-    private val definitions: List<Definition>,
+    private val definitions: List<WordDefinition.Meaning.Definition>,
 ) : RecyclerView.Adapter<DefinitionAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemDefinitionBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(definition: Definition, position: Int) {
+            fun bind(definition: WordDefinition.Meaning.Definition, position: Int) {
                 binding.tvDefinition.text = "$position. ${definition.definition}"
-                if (definition.example != null) {
+                if (definition.example.isNotBlank()) {
                     binding.tvDefinitionExample.text = definition.example
                 } else {
                     binding.tvDefinitionExample.hide()

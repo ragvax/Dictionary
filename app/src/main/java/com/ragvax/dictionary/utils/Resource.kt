@@ -1,6 +1,7 @@
 package com.ragvax.dictionary.utils
 
-sealed class Resource<T>(val data: T?, val title: String?, val msg: String?) {
-    class Success<T>(data: T) : Resource<T>(data, null, null)
-    class Error<T>(title: String?, message: String?) : Resource<T>(null, title, message)
+sealed class Resource<out T> {
+    data class Success<T>(val data: T): Resource<T>()
+    data class Error<T>(val title: String, val message: String): Resource<T>()
+    object Loading: Resource<Nothing>()
 }

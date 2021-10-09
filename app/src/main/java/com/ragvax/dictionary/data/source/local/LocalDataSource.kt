@@ -9,9 +9,9 @@ class LocalDataSource @Inject constructor(
     private val recentQueryDao: RecentQueryDao,
 ) {
 
-    suspend fun insertQuery(recentQuery: RecentQuery) = recentQueryDao.insertQuery(recentQuery)
+    suspend fun insertQuery(recentQuery: RecentQueryEntity) = recentQueryDao.insertQuery(recentQuery)
 
-    suspend fun deleteQuery(recentQuery: RecentQuery) = recentQueryDao.deleteQuery(recentQuery)
+    suspend fun deleteQuery(recentQuery: RecentQueryEntity) = recentQueryDao.deleteQuery(recentQuery)
 
-    fun getQueriesWithLimit(limit: Int): Flow<List<RecentQuery>> = recentQueryDao.getQueriesWithLimit(limit)
+    fun getQueriesWithLimit(limit: Int): Flow<List<RecentQueryEntity>> = recentQueryDao.getQueriesWithLimit(limit)
 }
