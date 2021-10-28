@@ -3,7 +3,6 @@ package com.ragvax.dictionary.ui.definition.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ragvax.dictionary.data.source.remote.Definition
 import com.ragvax.dictionary.databinding.ItemDefinitionBinding
 import com.ragvax.dictionary.domain.model.WordDefinition
 import com.ragvax.dictionary.utils.hide
