@@ -43,7 +43,7 @@ class DefinitionFragment : Fragment(R.layout.fragment_definition) {
     }
 
     private fun observeViewModel() {
-        viewModel.definitionFlow.collectWhileStarted(viewLifecycleOwner) { state ->
+        viewModel.definitionFlow.observeWithLifecycle(viewLifecycleOwner) { state ->
             when (state) {
                 is DefinitionState.Success -> bindOnSuccess(state.definition)
                 is DefinitionState.Failure -> bindOnFailure(state.errorTitle, state.errorMsg)

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ragvax.dictionary.data.source.remote.Meaning
 import com.ragvax.dictionary.databinding.ItemMeaningBinding
 import com.ragvax.dictionary.domain.model.WordDefinition
 import com.ragvax.dictionary.utils.hide

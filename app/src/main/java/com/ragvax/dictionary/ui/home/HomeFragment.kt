@@ -14,11 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ragvax.dictionary.R
 import com.ragvax.dictionary.databinding.FragmentHomeBinding
 import com.ragvax.dictionary.ui.home.adapters.RecentSearchesAdapter
-import com.ragvax.dictionary.utils.collectWhileStarted
+import com.ragvax.dictionary.utils.observeWithLifecycle
 import com.ragvax.dictionary.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home),
@@ -73,7 +72,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),
     }
 
     private fun observeViewModel() {
-        viewModel.homeEvent.collectWhileStarted(viewLifecycleOwner) { event ->
+        viewModel.homeEvent.observeWithLifecycle(viewLifecycleOwner) { event ->
             when (event) {
                 is HomeEvent.NavigateToDefinition -> {
                     val action = HomeFragmentDirections.actionHomeFragmentToDefinitionFragment(event.query)
