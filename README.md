@@ -1,12 +1,16 @@
 # Dictionary
+[![build](https://github.com/ragvax/Dictionary/actions/workflows/build.yaml/badge.svg)](https://github.com/ragvax/Dictionary/actions)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?labelColor=373e45&logo=android&style=flat)](https://android-arsenal.com/api?level=21)
+[![github profile](https://img.shields.io/badge/Github-ragvax-4a88ea?labelColor=373e45&style=flat&logo=github)](https://github.com/ragvax)
 
-A simple dictionary app that uses the API created by [Meet Developer](https://github.com/meetDeveloper). This dictionary app uses that API to show definitions for the words entered by the user. This app currently only supports English language.
+Dictionary is a small Android application that uses an API created by [Meet Developer](https://github.com/meetDeveloper) to display definitions of the word entered by users. This project is built based on modern Android development tech-stacks recommended by the Android team and MVVM architecture. This app currently only supports English.
 
-## Screenshot
-<img src="https://github.com/ragvax/Dictionary/blob/master/assets/home_day.png" width="225"> <img src="https://github.com/ragvax/Dictionary/blob/master/assets/definition_day.png" width="225">
-<img src="https://github.com/ragvax/Dictionary/blob/master/assets/home_night.png" width="225"> <img src="https://github.com/ragvax/Dictionary/blob/master/assets/definition_night.png" width="225">
+## Screenshots
+<img src="https://github.com/ragvax/Dictionary/blob/master/assets/home_day.png" width="24%">  <img src="https://github.com/ragvax/Dictionary/blob/master/assets/definition_day.png" width="24%">  <img src="https://github.com/ragvax/Dictionary/blob/master/assets/home_night.png" width="24%">  <img src="https://github.com/ragvax/Dictionary/blob/master/assets/definition_night.png" width="24%">
 
-## Libraries Used
+## Tech Stack & Libraries Used
+* Minimum SDK level 21
+* Kotlin
 * [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
   multidex and automated testing.
   * [AppCompat][1] - Degrade gracefully on older versions of Android.
