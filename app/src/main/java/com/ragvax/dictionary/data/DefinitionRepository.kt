@@ -2,7 +2,7 @@ package com.ragvax.dictionary.data
 
 import com.ragvax.dictionary.data.source.remote.DefinitionMapper
 import com.ragvax.dictionary.data.source.remote.RemoteDataSource
-import com.ragvax.dictionary.data.source.remote.WordDefinitionEntity
+import com.ragvax.dictionary.data.source.remote.WordDefinitionDTO
 import com.ragvax.dictionary.domain.model.WordDefinition
 import com.ragvax.dictionary.domain.repository.IDefinitionRepository
 import com.ragvax.dictionary.utils.Resource
@@ -22,7 +22,7 @@ class DefinitionRepository @Inject constructor(
             if (response.isSuccessful) {
                 val result = response.body()?.get(0)
                 if (result != null) {
-                    Resource.Success(mapResult(result))
+                    Resource.Success(mapResultToDomain(result))
                 } else {
                     Resource.Error(GENERIC_ERROR, EMPTY_RESULT_MESSAGE)
                 }
@@ -42,8 +42,8 @@ class DefinitionRepository @Inject constructor(
         }
     }
 
-    private fun mapResult(result: WordDefinitionEntity): WordDefinition {
-        return definitionMapper.mapFromEntity(result)
+    private fun mapResultToDomain(result: WordDefinitionDTO): WordDefinition {
+        return definitionMapper.mapFromDTO(result)
     }
 
     companion object {

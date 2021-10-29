@@ -5,7 +5,7 @@ import com.ragvax.dictionary.utils.Mapper
 import javax.inject.Inject
 
 class RecentQueryMapper @Inject constructor() : Mapper<RecentQueryEntity, RecentQuery> {
-    override fun mapFromEntity(input: RecentQueryEntity): RecentQuery {
+    fun mapFromEntity(input: RecentQueryEntity): RecentQuery {
         return RecentQuery(
             queryText = input.queryText,
             timeDate = input.timeDate
@@ -18,7 +18,7 @@ class RecentQueryMapper @Inject constructor() : Mapper<RecentQueryEntity, Recent
         }
     }
 
-    override fun mapToEntity(input: RecentQuery): RecentQueryEntity {
+    fun mapToEntity(input: RecentQuery): RecentQueryEntity {
         return RecentQueryEntity(
             queryText = input.queryText,
             timeDate = input.timeDate

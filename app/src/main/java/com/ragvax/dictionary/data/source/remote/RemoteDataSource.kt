@@ -8,7 +8,7 @@ import javax.inject.Singleton
 class RemoteDataSource @Inject constructor(
     private val apiService: DefinitionService,
 ) {
-    suspend fun fetchWordDefinition(word: String): Response<List<WordDefinitionEntity>> {
+    suspend fun fetchWordDefinition(word: String): Response<List<WordDefinitionDTO>> {
         return apiService.fetchWordDefinition(word)
     }
 }

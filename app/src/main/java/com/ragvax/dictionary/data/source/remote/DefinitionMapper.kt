@@ -4,9 +4,9 @@ import com.ragvax.dictionary.domain.model.WordDefinition
 import com.ragvax.dictionary.utils.Mapper
 import javax.inject.Inject
 
-class DefinitionMapper @Inject constructor() : Mapper<WordDefinitionEntity, WordDefinition> {
+class DefinitionMapper @Inject constructor() : Mapper<WordDefinitionDTO, WordDefinition> {
 
-    override fun mapFromEntity(input: WordDefinitionEntity): WordDefinition {
+    fun mapFromDTO(input: WordDefinitionDTO): WordDefinition {
         return WordDefinition(
             word = input.word,
             phonetics = input.phonetics?.mapPhonetics() ?: emptyList(),
@@ -15,11 +15,7 @@ class DefinitionMapper @Inject constructor() : Mapper<WordDefinitionEntity, Word
         )
     }
 
-    override fun mapToEntity(input: WordDefinition): WordDefinitionEntity {
-        return WordDefinitionEntity("Empty", null, null)
-    }
-
-    private fun List<Phonetic>.mapPhonetics(): List<WordDefinition.Phonetics> {
+    private fun List<PhoneticDTO>.mapPhonetics(): List<WordDefinition.Phonetics> {
         return this.map {
             WordDefinition.Phonetics(
                 text = it.text ?: "",
@@ -27,7 +23,8 @@ class DefinitionMapper @Inject constructor() : Mapper<WordDefinitionEntity, Word
             )
         }
     }
-    private fun List<Meaning>.mapMeanings(): List<WordDefinition.Meaning> {
+
+    private fun List<MeaningDTO>.mapMeanings(): List<WordDefinition.Meaning> {
         return this.map {
             WordDefinition.Meaning(
                 definitions = it.definitions?.mapDefinitions() ?: emptyList(),
@@ -36,7 +33,7 @@ class DefinitionMapper @Inject constructor() : Mapper<WordDefinitionEntity, Word
         }
     }
 
-    private fun List<Definition>.mapDefinitions(): List<WordDefinition.Meaning.Definition> {
+    private fun List<DefinitionDTO>.mapDefinitions(): List<WordDefinition.Meaning.Definition> {
         return this.map {
             WordDefinition.Meaning.Definition(
                 definition = it.definition ?: "",
