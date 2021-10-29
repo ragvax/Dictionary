@@ -3,6 +3,7 @@ package com.ragvax.dictionary.di
 import android.content.Context
 import com.ragvax.dictionary.data.source.local.DictionaryDatabase
 import com.ragvax.dictionary.data.source.local.RecentQueryDao
+import com.ragvax.dictionary.data.source.local.WordDefinitionDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +23,6 @@ object DatabaseModule {
 
     @Provides
     fun provideRecentQueryDao(dictionaryDatabase: DictionaryDatabase): RecentQueryDao {
-        return dictionaryDatabase.dictionaryDao()
+        return dictionaryDatabase.recentQueryDao()
     }
 }
