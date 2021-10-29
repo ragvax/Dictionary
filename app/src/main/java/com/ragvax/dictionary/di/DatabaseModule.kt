@@ -22,6 +22,6 @@ object DatabaseModule {
 
     @Provides
     fun provideRecentQueryDao(dictionaryDatabase: DictionaryDatabase): RecentQueryDao {
-        return dictionaryDatabase.dictionaryDao()
+        return dictionaryDatabase.recentQueryDao()
     }
 }

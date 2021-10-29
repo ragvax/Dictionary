@@ -7,5 +7,5 @@ import retrofit2.http.Path
 interface DefinitionService {
 
     @GET("entries/en_US/{word}")
-    suspend fun fetchWordDefinition(@Path("word") word: String): Response<List<WordDefinitionEntity>>
+    suspend fun fetchWordDefinition(@Path("word") word: String): Response<List<WordDefinitionDTO>>
 }
