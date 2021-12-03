@@ -1,14 +1,16 @@
-# Dictionary
+![Github Header](https://github.com/ragvax/Dictionary/blob/master/assets/DictionaryHeader.jpg?raw=true)
+
+# Dictionary 📖
 [![build](https://github.com/ragvax/Dictionary/actions/workflows/build.yaml/badge.svg)](https://github.com/ragvax/Dictionary/actions)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?labelColor=373e45&logo=android&style=flat)](https://android-arsenal.com/api?level=21)
 [![github profile](https://img.shields.io/badge/Github-ragvax-4a88ea?labelColor=373e45&style=flat&logo=github)](https://github.com/ragvax)
 
-Dictionary is a small Android application that uses an API created by [Meet Developer](https://github.com/meetDeveloper) to display definitions of the word entered by users. This project is built based on modern Android development tech-stacks recommended by the Android team and MVVM architecture. This app currently only supports English.
+Dictionary is a small online dictionary application to look up the meanings and definitions of words entered by users. It simply fetches data from the remote API created by [Meet Developer](https://github.com/meetDeveloper) and displays it to the users. This application is built based on modern Android development tech-stacks recommended by the Android team with MVVM and Single Activity Architecture. Currently, this app only supports English.
 
-## Screenshots
+## Screenshots 📷
 <img src="https://github.com/ragvax/Dictionary/blob/master/assets/home_day.png" width="24%">  <img src="https://github.com/ragvax/Dictionary/blob/master/assets/definition_day.png" width="24%">  <img src="https://github.com/ragvax/Dictionary/blob/master/assets/home_night.png" width="24%">  <img src="https://github.com/ragvax/Dictionary/blob/master/assets/definition_night.png" width="24%">
 
-## Tech Stack & Libraries Used
+## Built With 🛠
 * Minimum SDK level 21
 * Kotlin
 * [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
@@ -22,7 +24,7 @@ Dictionary is a small Android application that uses an API created by [Meet Deve
   * [Navigation][5] - Handle everything needed for in-app navigation.
   * [Room][5] - Access your app's SQLite database with in-app objects and compile-time checks.
   * [ViewModel][6] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
-     asynchronous tasks for optimal execution.
+    asynchronous tasks for optimal execution.
 * Third party and miscellaneous libraries
   * [Hilt][7]: for [dependency injection][8]
   * [Kotlin Coroutines][9] for managing background threads with simplified code and reducing needs for callbacks
@@ -39,7 +41,7 @@ Dictionary is a small Android application that uses an API created by [Meet Deve
 [8]: https://developer.android.com/training/dependency-injection
 [9]: https://kotlinlang.org/docs/reference/coroutines-overview.html
 
-## License
+## License 🔖
 ```
 Copyright 2021 Rizki Fajar Maulian
 
